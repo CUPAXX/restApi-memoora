@@ -1,20 +1,7 @@
 const  mongoose = require("mongoose");
-autoIncrement = require('mongoose-auto-increment');
 require('dotenv').config()
 
-const { PORT, CONNECTION_URL, DATABASE_NAME } = process.env
-let database, collection;
-
-
-// const connection = MongoClient.connect(CONNECTION_URL, { useNewUrlParser: true }, (error, client) => {
-//     if(error) {
-//         throw error;
-//     }
-//     database = client.db(DATABASE_NAME);
-//     collection = database.collection("user");
-//     console.log("Connected to `" + DATABASE_NAME + "` WITH PORT " + PORT);
-// });
-// module.exports = connection
+const { CONNECTION_URL } = process.env
 
 
 const  options = {
