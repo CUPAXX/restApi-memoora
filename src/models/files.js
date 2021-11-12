@@ -13,6 +13,9 @@
         },
         idUser: {
           type:String
+        },
+        name: {
+          type:String
         }
     });
 

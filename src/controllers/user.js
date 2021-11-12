@@ -24,7 +24,7 @@ exports.listFile = (req, res) => {
 exports.register = async (req, res) => {
   const {name, email, country, password} = req.body
   const resPassword = await bcrypt.hash(password, await bcrypt.genSalt())
-  const finalData = {name, email, country, password: resPasswordnpm}
+  const finalData = {name, email, country, password: resPassword}
   const data = new userModel(finalData)
   data.save((err, results) => {
     if(err){
@@ -37,7 +37,7 @@ exports.register = async (req, res) => {
         var id = crypto.randomBytes(7).toString('hex');
         writeYamlFile(`./src/data/${results._id}/${id}.yml`, {EMAIL: results.email, NAME: results.name}).then(() => {
           const path = `./src/data/${results._id}/${id}.yml`
-          const fileData = new fileModel({files: path, idUser: results._id})
+          const fileData = new fileModel({files: path, idUser: results._id, name: results.name})
           fileData.save()
         })
       }
