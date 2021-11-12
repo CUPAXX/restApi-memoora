@@ -11,8 +11,12 @@
           type:String,
           required:true
         },
-        age:{
-          type:Number,
+        email:{
+          type:String,
+          required:true
+        },
+        country:{
+          type:String,
           required:true
         },
         createdOn: {
@@ -21,5 +25,6 @@
         }
     });
 
+    const userModel = mongoose.model("userModel", UserSchema);
 // create and export model
-module.exports = mongoose.model("userModel", UserSchema);
+module.exports = userModel;

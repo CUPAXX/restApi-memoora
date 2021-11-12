@@ -1,4 +1,10 @@
 const userModel = require('../models/user')
+var fs = require('fs');
+const writeYamlFile = require('write-yaml-file')
+var crypto = require("crypto");
+
+
+
 
 exports.getUser = (req, res) => {
   userModel.find({}, (err, result) => {
@@ -28,6 +34,14 @@ exports.createUser = (req, res) => {
     if(err){
       res.status(500).send(err);
     }
+    fs.mkdir(`./src/data/${result._id}`, { recursive: true }, function(err) {
+      if (err) {
+        console.log(err)
+      } else {
+        var id = crypto.randomBytes(7).toString('hex');
+        writeYamlFile(`./src/data/${result._id}/${id}.yml`, {EMAIL: result.email, NAME: result.name})
+      }
+    })
     res.status(200).json(result)
   })
 }

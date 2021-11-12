@@ -1,4 +1,5 @@
 const  mongoose = require("mongoose");
+autoIncrement = require('mongoose-auto-increment');
 require('dotenv').config()
 
 const { PORT, CONNECTION_URL, DATABASE_NAME } = process.env
