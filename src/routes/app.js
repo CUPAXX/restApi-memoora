@@ -3,12 +3,6 @@
 module.exports = function(app) {
   let userList = require('../controllers/user')
 
-  app.route("/user")
-  .get(userList.getUser)
-  .post(userList.createUser)
-
-  app.route("/user/:id")
-  .get(userList.getUserById)
-  .put(userList.updateUser)
-  .delete(userList.deleteUser)
+  app.route("/api/register").post(userList.register)
+  app.route("/api/files").get(userList.listFile)
 }

@@ -18,10 +18,6 @@
         country:{
           type:String,
           required:true
-        },
-        createdOn: {
-          type:Date,
-          default:Date.now
         }
     });
 
