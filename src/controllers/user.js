@@ -12,7 +12,8 @@ const {response} = require('../helpers/standarRes')
 
 
 exports.listFile = (req, res) => {
-  fileModel.find({}, (err, results) => {
+  const id = req.authUser.id
+  fileModel.findOne({idUser: id}, (err, results) => {
     if(err){
       return response(res, 500, false, `Error: ${err}`)
     }
@@ -20,6 +21,15 @@ exports.listFile = (req, res) => {
   })
 }
 
+exports.getProfile =(req, res) => {
+  const id = req.authUser.id
+  userModel.findOne({_id: id}, {password:0}, (err, results) => {
+    if(err){
+      return response(res, 500, false, `Error: ${err}`)
+    }
+    return response(res, 200, true, `Profile User: ${results.name}`, results)
+  })
+}
 
 exports.register = async (req, res) => {
   const {name, email, country, password} = req.body
